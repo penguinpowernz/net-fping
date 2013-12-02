@@ -13,11 +13,11 @@ module Net
       end
 
       def alive_in_subnet(subnet)
-        %[fping -ag #{subnet} 2>/dev/null].split("\n")
+        %x[fping -ag #{subnet} 2>/dev/null].split("\n")
       end
 
       def alive_in_range(from, to)
-        %[fping -ag #{from} #{to} 2>/dev/null].split("\n")
+        %x[fping -ag #{from} #{to} 2>/dev/null].split("\n")
       end
 
     end
