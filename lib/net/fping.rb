@@ -15,7 +15,7 @@ module Net
       end
 
       def build_args(opts)
-        opts = default_options.merge(options)
+        opts = default_options.merge(opts)
         "-c #{opts[:count]} -r #{opts[:retries]} -t #{opts[:timeout]} -i #{opts[:interval]} -b #{opts[:bytes]}"
       end
 
