@@ -25,7 +25,7 @@ module Net
       end
 
       def alive(hosts=[], **opts)
-        return 'fping not installed!' unless fping_installed?
+        return ['fping not installed!'] unless fping_installed?
         return [] if hosts.empty?
 
         args = build_args(opts)
@@ -33,22 +33,22 @@ module Net
       end
 
       def dead(hosts=[], **opts)
-        return 'fping not installed!' unless fping_installed?
+        return ['fping not installed!'] unless fping_installed?
         return [] if hosts.empty?
-        
+
         args = build_args(opts)
         %x[fping #{args} -u #{hosts.join(" ")} 2>/dev/null].split("\n")
       end
 
       def alive_in_subnet(subnet, **opts)
-        return 'fping not installed!' unless fping_installed?
+        return ['fping not installed!'] unless fping_installed?
 
         args = build_args(opts)
         %x[fping #{args} -ag #{subnet} 2>/dev/null].split("\n")
       end
 
       def alive_in_range(from, to, **opts)
-        return 'fping not installed!' unless fping_installed?
+        return ['fping not installed!'] unless fping_installed?
 
         args = build_args(opts)
         %x[fping #{args} -ag #{from} #{to} 2>/dev/null].split("\n")
@@ -56,7 +56,7 @@ module Net
 
       # Added defs for latency based metrics
       def latency_simple(host)
-        return 'fping not installed!' unless fping_installed?
+        return ['fping not installed!'] unless fping_installed?
 
         bytes = 68
         count = 6
@@ -65,7 +65,7 @@ module Net
       end
 
       def latency(host, bytes, count, interval=1000)
-        return 'fping not installed!' unless fping_installed?
+        return ['fping not installed!'] unless fping_installed?
 
         cmd = "fping -b #{bytes} -c #{count} -q -p #{interval} #{host}"
         
