@@ -7,16 +7,15 @@ module Net
       def default_options
         {
           retries: 3,
-          count: 1,
           bytes: 56,
-          interval: 25,
+          interval: 10,
           timeout: 500
         }
       end
 
       def build_args(opts)
         opts = default_options.merge(opts)
-        "-c #{opts[:count]} -r #{opts[:retries]} -t #{opts[:timeout]} -i #{opts[:interval]} -b #{opts[:bytes]}"
+        "-r #{opts[:retries]} -t #{opts[:timeout]} -i #{opts[:interval]} -b #{opts[:bytes]}"
       end
 
       def alive(hosts=[], **opts)
